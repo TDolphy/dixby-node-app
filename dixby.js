@@ -31,7 +31,7 @@ function muskTweets() {
     	console.log(tweets[i].text);
 
   	}
-    
+
   });
 };
 
@@ -42,7 +42,7 @@ function spotifySearch () {
         console.log('Error occurred: ' + err);
         return;
     }
- 
+
     console.log("Artist(s): " + data.tracks.items[0].album.artists[0].name);
     console.log("Song Title: " + data.tracks.items[0].name);
     console.log("Preview Link: " + data.tracks.items[0].preview_url);
@@ -58,14 +58,24 @@ request(queryUrl, function(error, response, body) {
   // If the request is successful
   if (!error && response.statusCode === 200) {
   	// console.log(JSON.parse(body));
+
+		var ratingAtIndexZero = ( typeof JSON.parse(body).Ratings !== "undefined" )
+															? "IMDB Rating: " + JSON.parse(body).Ratings[0].Value
+															: "IMDB Rating: Not Available";
+
+		var ratingAtIndexOne = ( typeof JSON.parse(body).Ratings !== "undefined" )
+															? "Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value
+															: "Rotten Tomatoes Rating: Not Available";
+
+
   	console.log("Title: " + JSON.parse(body).Title);
     console.log("Release Year: " + JSON.parse(body).Year);
-    console.log("IMDB Rating: " + JSON.parse(body).Ratings[0].Value);
+    console.log(ratingAtIndexZero);
     console.log("Country: " + JSON.parse(body).Country);
     console.log("Language: " + JSON.parse(body).Language);
     console.log("Plot: " + JSON.parse(body).Plot);
     console.log("Actors/Actresses: " + JSON.parse(body).Actors);
-    console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
+    console.log(ratingAtIndexOne);
   }
 });
 };
