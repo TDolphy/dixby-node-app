@@ -66,7 +66,7 @@ request(queryUrl, function(error, response, body) {
     console.log("Plot: " + JSON.parse(body).Plot);
     console.log("Actors/Actresses: " + JSON.parse(body).Actors);
     console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
-  }
+  };
 });
 };
 
@@ -75,14 +75,8 @@ function doWhatItSays () {
 
 fs.readFile("random.txt", "utf8", function(error, data) {
 
-  // We will then print the contents of data
-  // console.log(data);
-
-  // Then split it by commas (to make it more readable)
   var dataArr = data.split(",");
 
-  // We will then re-display the content as an array for later use.
-  // console.log(dataArr);
   action = dataArr[0];
   input = dataArr[1];
   switchStatement();
